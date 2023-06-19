@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BadState() {
+function GoodState() {
   const [album, setAlbum] = useState({ singer: "", songWriter: "", song: "", title: "" });
   const { singer, songWriter, song, title } = album; //비구조화 할당
 
@@ -22,4 +22,4 @@ function BadState() {
     </>
   );
 }
-export default BadState;
+export default GoodState;
