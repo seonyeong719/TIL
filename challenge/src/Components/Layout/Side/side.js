@@ -1,60 +1,74 @@
 import styled from "styled-components";
 import { TOGGLE_LIST } from "../../../Consts/menu_list";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Side() {
-  const list = TOGGLE_LIST;
+  const [list, setList] = useState(TOGGLE_LIST);
   const navigate = useNavigate();
   const { category, menu } = useParams();
 
-  const urlNavigate = (elPath, ePath) => {
-    // navigate(`${}`);
-    console.log(elPath);
+  const openTitle = (url) => {
+    const lists = [...list];
+    const findUrl = lists.find((e) => e.path === url);
+    findUrl.isSelected = !findUrl.isSelected;
+    setList(lists);
   };
+
+  const urlNavigate = (category, menu) => {
+    navigate(`${menu}/${category}/${menu}`);
+  };
+
+  useEffect(() => {
+    const lists = [...list];
+    const findUrl = lists.find((e) => e.path === category);
+    if (findUrl) {
+      findUrl.isSelected = true;
+    }
+    setList(lists);
+  }, [menu]);
 
   return (
     <S.Wrapper>
-      <S.Wrap>
-        <S.CategoryTitle>
-          {list.map((el) => (
-            <S.CategoryList>
-              <S.Title>{el.category}</S.Title>
-              <S.ListMenuWrap>
-                {el.children.map((e) => (
-                  <S.ListMenu onClick={() => urlNavigate(el.path, e.path)}>{e.list}</S.ListMenu>
-                ))}
-              </S.ListMenuWrap>
+      <div>
+        <ul>
+          {list.map((el, idx) => (
+            <S.CategoryList key={idx}>
+              <S.Title onClick={() => openTitle(el.path)}>
+                {el.category}
+                {el.isSelected ? "-" : "+"}
+              </S.Title>
+              {el.isSelected && (
+                <S.ListMenuWrap>
+                  {el.children.map((e, idx) => (
+                    <S.ListMenu
+                      key={idx}
+                      state={e.path === menu}
+                      onClick={() => urlNavigate(el.path, e.path)}
+                    >
+                      {e.list}
+                    </S.ListMenu>
+                  ))}
+                </S.ListMenuWrap>
+              )}
             </S.CategoryList>
           ))}
-        </S.CategoryTitle>
-      </S.Wrap>
+        </ul>
+      </div>
     </S.Wrapper>
   );
 }
 export default Side;
 
 const Wrapper = styled.div`
-  border-right: 1px solid black;
+  border-right: 1px solid gray;
   width: 250px;
   height: 88vh;
   padding: 30px;
 `;
 
-const Wrap = styled.div``;
-
-const CategoryTitle = styled.ul``;
-
 const CategoryList = styled.li`
   list-style: none;
-  /* font-size: 25px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  cursor: pointer; */
-  /* &:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s;
-    color: red;
-  } */
 `;
 
 const Title = styled.span`
@@ -69,18 +83,18 @@ const ListMenuWrap = styled.ul`
   list-style: none;
   margin-left: 40px;
   margin-top: 20px;
-  /* display: none; */
 `;
 
 const ListMenu = styled.li`
   margin: 15px 0;
   font-weight: 400;
+  cursor: pointer;
+  color: ${({ state }) => (state ? "blue" : "")};
+  font-weight: ${({ state }) => (state ? "bold" : "")};
 `;
 
 const S = {
   Wrapper,
-  Wrap,
-  CategoryTitle,
   CategoryList,
   Title,
   ListMenuWrap,

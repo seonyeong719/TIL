@@ -7,12 +7,10 @@ export const TOGGLE_LIST = [
       {
         path: "user-info",
         list: "회원정보",
-        isToggle: false,
       },
       {
         path: "user-list",
         list: "회원목록",
-        isToggle: false,
       },
     ],
   },
@@ -24,12 +22,10 @@ export const TOGGLE_LIST = [
       {
         path: "product-info",
         list: "상품정보",
-        isToggle: false,
       },
       {
         path: "product-list",
         list: "상품목록",
-        isToggle: false,
       },
     ],
   },

@@ -1,8 +1,14 @@
+import { styled } from "styled-components";
+
 function ProductInfo() {
   return (
     <>
-      <div>ProductInfo📦</div>
+      <Page>ProductInfo📦</Page>
     </>
   );
 }
 export default ProductInfo;
+
+const Page = styled.div`
+  font-size: 80px;
+`;
