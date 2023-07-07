@@ -5,13 +5,13 @@ import Side from "./Side/side";
 
 function Layout() {
   return (
-    <Wrapper>
+    <S.Wrapper>
       <Header />
-      <Container>
+      <S.Container>
         <Side />
         <Outlet />
-      </Container>
-    </Wrapper>
+      </S.Container>
+    </S.Wrapper>
   );
 }
 export default Layout;
@@ -23,3 +23,8 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
 `;
+
+const S = {
+  Wrapper,
+  Container,
+};
