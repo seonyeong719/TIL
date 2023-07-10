@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { flexAllCenter } from "../../Styles/common";
 
 const variantCSS = {
-  primary: css`
+  default: css`
     background-color: ${({ theme }) => theme.color.white};
     ${flexAllCenter};
     cursor: pointer;
@@ -16,7 +16,7 @@ const shapeCSS = {
     border: 1.5px solid ${({ theme }) => theme.color.gray[200]};
   `,
 
-  submitBtn: css`
+  default: css`
     border-radius: 6px;
     &:disabled {
       background: ${({ theme }) => theme.color.gray[200]};
@@ -39,27 +39,6 @@ const shapeCSS = {
 };
 
 const sizeCSS = {
-  moreBtn: css`
-    width: 188px;
-    max-width: 200px;
-    height: 58px;
-    padding: 17px;
-    font-size: ${({ theme }) => theme.fontSize.base};
-    font-weight: ${({ theme }) => theme.fontWeight.regular};
-  `,
-  submitBtn: css`
-    width: 400px;
-    height: 52px;
-    font-size: ${({ theme }) => theme.fontSize.base};
-    font-weight: ${({ theme }) => theme.fontWeight.bold};
-  `,
-  checkBtn: css`
-    width: 6vw;
-    height: 5vh;
-    font-size: ${({ theme }) => theme.fontSize.sm};
-    font-weight: ${({ theme }) => theme.fontWeight.normal};
-  `,
-
   small: css`
     width: 40px;
     max-width: 60px;
@@ -67,7 +46,7 @@ const sizeCSS = {
     padding: 16px 0;
     font-size: ${({ theme }) => theme.fontSize.medium};
   `,
-  medium: css`
+  default: css`
     width: 96px;
     height: 48px;
     padding: 16px 0;
@@ -86,7 +65,7 @@ const sizeCSS = {
   `,
 };
 
-export const PropsBtn = styled.button`
+export const Button = styled.button`
   ${({ variant }) => variantCSS[variant]}
   ${({ shape }) => shapeCSS[shape]}
     ${({ size }) => sizeCSS[size]}

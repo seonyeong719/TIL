@@ -1,11 +1,11 @@
 import * as S from "./style";
 
-function CustomButton(props) {
-  const { variant, shape, size, children, ...rest } = props;
+function Button(props) {
+  const { variant = "default", shape = "default", size = "default", children, ...rest } = props;
   return (
-    <S.PropsBtn variant={variant} shape={shape} size={size} disabled={!rest.disabled} {...rest}>
+    <S.Button variant={variant} shape={shape} size={size} {...rest}>
       {children}
-    </S.PropsBtn>
+    </S.Button>
   );
 }
-export default CustomButton;
+export default Button;
