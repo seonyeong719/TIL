@@ -14,16 +14,16 @@ export default {
     },
     size: {
       options: ["small", "medium", "large", "full"],
-      continue: { type: "select" },
+      control: { type: "select" },
     },
   },
 };
 
-const Template = (args) => <Button {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  variant: "default",
-  shape: "default",
-  size: "default",
+export const Primary = {
+  args: {
+    variant: "primary",
+    shape: "moreBtn",
+    size: "small",
+    children: "Button",
+  },
 };

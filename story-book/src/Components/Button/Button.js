@@ -1,4 +1,4 @@
-import * as S from "./style";
+import * as S from "./button.style";
 
 function Button(props) {
   const { variant = "default", shape = "default", size = "default", children, ...rest } = props;
