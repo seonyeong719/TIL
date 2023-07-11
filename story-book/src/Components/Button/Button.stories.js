@@ -5,11 +5,11 @@ export default {
   component: Button,
   argTypes: {
     variant: {
-      options: ["primary"],
+      options: ["primary", "secondary", "error"],
       control: { type: "radio" },
     },
     shape: {
-      options: ["moreBtn", "round"],
+      options: ["moreBtn", "submitBtn", "checkBtn", "round"],
       control: { type: "radio" },
     },
     size: {

@@ -1,29 +1,33 @@
-import { Input } from "./input.style";
+import Input from "./Input";
 
 export default {
   title: "Components/Input",
   component: Input,
   argTypes: {
     variant: {
-      options: ["primary"],
+      options: ["default", "secondary"],
       control: { type: "radio" },
     },
     shape: {
-      options: ["moreBtn", "round"],
+      options: ["default", "littleShape", "shape"],
       control: { type: "radio" },
     },
     size: {
-      options: ["small", "medium", "large", "full"],
-      continue: { type: "select" },
+      options: ["default", "small", "large"],
+      control: { type: "select" },
+    },
+    status: {
+      options: ["default", "success", "error"],
+      control: { type: "select" },
     },
   },
 };
 
-const Template = (args) => <Input {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  variant: "default",
-  shape: "default",
-  size: "default",
+export const Primary = {
+  args: {
+    variant: "default",
+    shape: "default",
+    size: "default",
+    children: "Input",
+  },
 };
