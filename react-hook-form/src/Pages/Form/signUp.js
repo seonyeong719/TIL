@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignupSchema } from "../../Consts/signUpYup";
+import SignUpInput from "./Components/signUpInput";
 
 const SignUpPage = () => {
   const {
-    register,
     handleSubmit,
-    setValue,
+    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(SignupSchema) });
 
@@ -21,73 +21,44 @@ const SignUpPage = () => {
       <S.Wrap>
         <S.Form onSubmit={handleSubmit(onSubmit)}>
           <p>회원가입</p>
-          <S.InputWrapBtn>
-            <S.ItemWrap>
-              <S.Mark>*</S.Mark>
-              <span>아이디</span>
-            </S.ItemWrap>
-            <S.InputBoxWrap>
-              <input {...register("email")} placeholder="E-mail" />
-            </S.InputBoxWrap>
-          </S.InputWrapBtn>
-          {errors.email && <span style={{ color: "red" }}>{errors.email.message}</span>}
-          <S.InputWrap>
-            <S.ItemWrap>
-              <S.Mark>*</S.Mark>
-              <span>비밀번호</span>
-            </S.ItemWrap>
-            <S.InputBoxWrap>
-              <input
-                {...register("password")}
-                placeholder="특수문자, 영어, 숫자 포함 6자이상"
-                type="password"
-              />
-            </S.InputBoxWrap>
-          </S.InputWrap>
-          {errors.password && <span style={{ color: "red" }}>{errors.password.message}</span>}
-          <S.InputWrap>
-            <S.ItemWrap>
-              <S.Mark>*</S.Mark>
-              <span>비밀번호 확인</span>
-            </S.ItemWrap>
-            <S.InputBoxWrap>
-              <input {...register("confirmPW")} placeholder="PW check" type="password" />
-            </S.InputBoxWrap>
-          </S.InputWrap>
-          {errors.confirmPW && <span style={{ color: "red" }}>{errors.confirmPW.message}</span>}
-          <S.InputWrap>
-            <S.ItemWrap>
-              <S.Mark>*</S.Mark>
-              <span>핸드폰</span>
-            </S.ItemWrap>
-            <S.InputBoxWrap>
-              <input
-                maxLength="13"
-                {...register("phoneNumber", {
-                  onChange: (e) => {
-                    setValue(
-                      "phoneNumber",
-                      e.target.value
-                        .replace(/[^0-9]/g, "")
-                        .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)
-                    );
-                  },
-                })}
-                placeholder="010-0000-0000"
-              />
-            </S.InputBoxWrap>
-          </S.InputWrap>
-          {errors.phoneNumber && <span style={{ color: "red" }}>{errors.phoneNumber.message}</span>}
-          <S.InputWrapBtn>
-            <S.ItemWrap>
-              <S.Mark>*</S.Mark>
-              <span>나이</span>
-            </S.ItemWrap>
-            <S.InputBoxWrap>
-              <input {...register("age")} placeholder="age" />
-            </S.InputBoxWrap>
-          </S.InputWrapBtn>
-          {errors.age && <span style={{ color: "red" }}>{errors.age.message}</span>}
+          <SignUpInput
+            label="이메일"
+            name="email"
+            control={control}
+            errors={errors}
+            placeholder="E-mail"
+          />
+          <SignUpInput
+            label="비밀번호"
+            name="password"
+            control={control}
+            errors={errors}
+            type="password"
+            placeholder="특수문자, 영어, 숫자 포함 6자이상"
+          />
+          <SignUpInput
+            label="비밀번호 확인"
+            name="confirmPW"
+            control={control}
+            errors={errors}
+            type="password"
+            placeholder="confirmPW"
+          />
+          <SignUpInput
+            label="핸드폰"
+            name="phoneNumber"
+            control={control}
+            errors={errors}
+            placeholder="010-0000-0000"
+            maxLength="13"
+          />
+          <SignUpInput
+            label="나이"
+            name="age"
+            control={control}
+            errors={errors}
+            placeholder="age"
+          />
           <BtnWrap>
             <S.Button>회원가입</S.Button>
           </BtnWrap>
@@ -155,59 +126,10 @@ const BtnWrap = styled.div`
   width: 100%;
 `;
 
-const ItemWrap = styled.div`
-  display: flex;
-  width: 20%;
-  & > span {
-    font-size: 16px;
-    font-weight: 700;
-  }
-`;
-
-const InputBoxWrap = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  & > input {
-    width: 100%;
-    height: 10px;
-    border: 1px solid beige;
-    border-radius: 10px;
-    margin: 10px 0px;
-    display: flex;
-    padding: 20px;
-    margin-left: 10px;
-    padding-left: 10px;
-  }
-`;
-const InputWrap = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-`;
-
-const InputWrapBtn = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-`;
-
-const Mark = styled.span`
-  color: red;
-  font-weight: 700;
-`;
-
 const S = {
   Div,
   Wrap,
   LogoImage,
   Form,
   Button,
-  InputWrap,
-  InputWrapBtn,
-  Mark,
-  ItemWrap,
-  InputBoxWrap,
 };
