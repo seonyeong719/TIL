@@ -22,5 +22,8 @@ export const SignupSchema = yup.object().shape({
     .min(10, "양심이 있으십니까?")
     .max(100, "100이하 값을 입력해주세요.")
     .typeError("나이는 숫자로 입력해주세요."),
-  phoneNumber: yup.number(),
+  phoneNumber: yup
+    .string()
+    .matches(/^\d{3}-\d{4}-\d{4}$/, "올바른 핸드폰 번호 형식이 아닙니다.")
+    .required("핸드폰 번호를 입력해주세요."),
 });

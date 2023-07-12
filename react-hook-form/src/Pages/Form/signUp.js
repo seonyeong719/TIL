@@ -7,14 +7,14 @@ const SignUpPage = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     setValue,
-    control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(SignupSchema) });
-  console.log(getValues("password"));
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    alert(JSON.stringify(data));
+    console.log(data);
+  };
 
   return (
     <S.Div>
