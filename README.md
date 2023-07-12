@@ -4,6 +4,10 @@
 
 <br>
 
+**[react-hook-form](https://github.com/seonyeong719/TIL/tree/main/react-hook-form)** : react-hook-form에 yup과 controller를 사용한 유효성 검사기능
+
+<br>
+
 **[state](https://github.com/seonyeong719/TIL/tree/main/state)** : 불필요한 렌더링을 줄여 렌더링 최적화 하는 방법
 
 <br>
