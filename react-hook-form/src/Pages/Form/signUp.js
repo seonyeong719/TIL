@@ -3,13 +3,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SignupSchema } from "../../Consts/signUpYup";
 import SignUpInput from "./Components/signUpInput";
+import PhoneInput from "./Components/phoneInput";
 
 const SignUpPage = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(SignupSchema) });
+  } = useForm(
+    { resolver: yupResolver(SignupSchema) }
+    // { reValidateMode: "onChange" } 재유효성 검사. 입력이 변경될 때 유효성 검사가 트리거 됨.
+    // {mode: "onChange"} 이벤트 트리거에서 유효성 검사를 진행. 성능 안좋음.
+  );
 
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
@@ -44,7 +49,7 @@ const SignUpPage = () => {
             type="password"
             placeholder="confirmPW"
           />
-          <SignUpInput
+          <PhoneInput
             label="핸드폰"
             name="phoneNumber"
             control={control}
