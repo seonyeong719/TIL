@@ -2,6 +2,12 @@ import { Controller } from "react-hook-form";
 import styled from "styled-components";
 import { ErrorMessage } from "@hookform/error-message";
 
+/*
+name -> 가리킬 Form의 field 명
+control -> useForm의 control 
+render -> field에 의존하는 children Node
+*/
+
 function SignUpInput({ label, name, control, errors, ...rest }) {
   return (
     <S.Div>
