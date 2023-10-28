@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import OneTodo from "./components/one-todo";
 
+export type TodoType = {
+  title: string;
+  content: string;
+  state: boolean;
+};
+
 const Todo = () => {
-  const [todoLsit, setTodoLsit] = useState([]);
+  const [todoLsit, setTodoLsit] = useState<TodoType[]>([]);
 
   useEffect(() => {
     setTodoLsit([

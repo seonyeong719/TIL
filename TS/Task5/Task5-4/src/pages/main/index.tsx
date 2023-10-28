@@ -5,7 +5,6 @@ const Home = () => {
   const navigator = useNavigate();
   const natvigateToTodoPage = () => {
     navigator("/todo");
-    console.log("ddd");
   };
 
   return (

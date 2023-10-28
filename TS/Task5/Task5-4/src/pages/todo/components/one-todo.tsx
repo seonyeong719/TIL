@@ -1,4 +1,6 @@
-const OneTodo = ({ todo }) => {
+import { TodoType } from "..";
+
+const OneTodo = ({ todo }: { todo: TodoType }) => {
   return (
     <>
       <div>{todo.title}</div>
